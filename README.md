@@ -1,5 +1,5 @@
 # circular_buffer_autoresize
-This is an implementation of a circular buffer with all bytes usable(Usual method is to leave a byte empty to differentiate buffer full and buffer empty conditions).During write to buffer operation, the buffer resizes to double its previous size whenever a buffer full condition is reached, then performs a byte write.(Resizing is limited to contraints like heap size that is mentioned in the linker script).(In short : If no space space then the buffer make some space,during write operation )
+This is an implementation of a circular buffer with all bytes usable(Usual method is to leave a byte empty to differentiate buffer full and buffer empty conditions).During write to buffer operation, the buffer resizes to double its previous size whenever a buffer full condition is reached, then performs a byte write.(Resizing is limited to contraints like heap size that is mentioned in the linker script).(In short : If no space space then the buffer makes some space,during write operation )
 
 
 - IDE : MCUXPRESSO
