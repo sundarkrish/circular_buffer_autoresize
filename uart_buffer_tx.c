@@ -76,8 +76,8 @@ tx_error_status is_buffer_empty_tx(void)
 tx_error_status is_buffer_init_tx(void)
 {
 
-	// Returns TX_BUFF_INIT_TRUE if head or the tail pointers are not at -1;
-	if (!((head_ptr_tx == -1) || (tail_ptr_tx == -1)) && (buffer_tx != NULL))
+	// Returns TX_BUFF_INIT_TRUE if head and the tail pointers  are not at -1 and buffer not poiting to null;
+	if (!((head_ptr_tx == -1) || (tail_ptr_tx == -1) || (buffer_tx != NULL)))
 	{
 		return TX_BUFF_INIT_TRUE;
 	}
@@ -127,7 +127,7 @@ void buffer_destroy_tx(void)
 tx_error_status write_to_buffer_tx(unsigned char  val)
 {
 
-	if (head_ptr_tx == -1)
+	if (is_buffer_init_tx() == 7)
 	{
 		return TX_BUFF_INIT_FALSE;
 	}
@@ -199,7 +199,7 @@ unsigned char read_from_buffer_tx()
 
     unsigned char c = 0;
 
-    if (tail_ptr_tx == -1)
+    if (is_buffer_init_tx() == 7)
     {
     	return (unsigned char)TX_BUFF_INIT_FALSE;
     }

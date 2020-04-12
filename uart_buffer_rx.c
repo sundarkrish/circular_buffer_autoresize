@@ -76,8 +76,8 @@ rx_error_status is_buffer_empty_rx(void)
 rx_error_status is_buffer_init_rx(void)
 {
 
-	// Returns RX_BUFF_INIT_TRUE if head or the tail pointers are not at -1;
-	if (!((head_ptr_rx == -1) || (tail_ptr_rx == -1)) && (buffer_rx != NULL))
+	// Returns RX_BUFF_INIT_TRUE if head and the tail pointers  are not at -1 and buffer not poiting to null;
+	if (!((head_ptr_rx == -1) || (tail_ptr_rx == -1) || (buffer_rx != NULL)))
 	{
 		return RX_BUFF_INIT_TRUE;
 	}
@@ -127,7 +127,7 @@ void buffer_destroy_rx(void)
 rx_error_status write_to_buffer_rx(unsigned char  val)
 {
 
-	if (head_ptr_rx == -1)
+	if (is_buffer_init_rx() == 7)
 	{
 		return RX_BUFF_INIT_FALSE;
 	}
@@ -199,7 +199,7 @@ unsigned char read_from_buffer_rx()
 
     unsigned char c = 0;
 
-    if (tail_ptr_rx == -1)
+    if (is_buffer_init_rx() == 7)
     {
     	return (unsigned char)RX_BUFF_INIT_FALSE;
     }
