@@ -77,7 +77,7 @@ rx_error_status is_buffer_init_rx(void)
 {
 
 	// Returns RX_BUFF_INIT_TRUE if head and the tail pointers  are not at -1 and buffer not poiting to null;
-	if (!((head_ptr_rx == -1) || (tail_ptr_rx == -1) || (buffer_rx != NULL)))
+	if (!((head_ptr_rx == -1) || (tail_ptr_rx == -1) || (buffer_rx == NULL)))
 	{
 		return RX_BUFF_INIT_TRUE;
 	}
@@ -104,6 +104,7 @@ rx_error_status verify_buffer_ptr_rx(void)
 void  buffer_init_rx(void)
 {
 
+	free(buffer_rx);
 	buffer_rx = (buffer_rx_typedef *)malloc(sizeof(buffer_rx_typedef) * BUFF_MAX_RX);
 	// write algorithm required non-empty flag to be zero at the beginning
 	memset(buffer_rx, 0, sizeof(buffer_rx_typedef) * BUFF_MAX_RX);
@@ -222,4 +223,26 @@ unsigned char read_from_buffer_rx()
 
 
 
+}
+
+
+// Only for test purpose.Note: Exposing head and tail ptr makes code very vulnerable.
+// Use only for test purpose at inevitable cases.
+uint32_t remove_wrap_test_rx(void)
+{
+
+	return tail_ptr_rx;
+}
+
+
+uint32_t write_wrap_test_rx(void)
+{
+
+	return head_ptr_rx;
+}
+
+uint16_t current_buffer_length_rx(void)
+{
+
+	return BUFF_MAX_RX;
 }

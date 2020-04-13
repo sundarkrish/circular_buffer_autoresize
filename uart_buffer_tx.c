@@ -77,7 +77,7 @@ tx_error_status is_buffer_init_tx(void)
 {
 
 	// Returns TX_BUFF_INIT_TRUE if head and the tail pointers  are not at -1 and buffer not poiting to null;
-	if (!((head_ptr_tx == -1) || (tail_ptr_tx == -1) || (buffer_tx != NULL)))
+	if (!((head_ptr_tx == -1) || (tail_ptr_tx == -1) || (buffer_tx == NULL)))
 	{
 		return TX_BUFF_INIT_TRUE;
 	}
@@ -104,6 +104,7 @@ tx_error_status verify_buffer_ptr_tx(void)
 void  buffer_init_tx(void)
 {
 
+	free(buffer_tx);
 	buffer_tx = (buffer_tx_typedef *)malloc(sizeof(buffer_tx_typedef) * BUFF_MAX_TX);
 	// write algorithm required non-empty flag to be zero at the beginning
 	memset(buffer_tx, 0, sizeof(buffer_tx_typedef) * BUFF_MAX_TX);
@@ -222,4 +223,26 @@ unsigned char read_from_buffer_tx()
 
 
 
+}
+
+
+// Only for test purpose.Note: Exposing head and tail ptr makes code very vulnerable.
+// Use only for test purpose at inevitable cases.
+uint32_t remove_wrap_test_tx(void)
+{
+
+	return tail_ptr_tx;
+}
+
+
+uint32_t write_wrap_test_tx(void)
+{
+
+	return head_ptr_tx;
+}
+
+uint16_t current_buffer_length_tx(void)
+{
+
+	return BUFF_MAX_TX;
 }

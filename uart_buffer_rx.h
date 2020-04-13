@@ -52,7 +52,8 @@ void buffer_destroy_rx(void);
 rx_error_status write_to_buffer_rx(unsigned char  val);
 unsigned char read_from_buffer_rx();
 rx_error_status write_to_buffer_rx(unsigned char );
-
-
+uint32_t write_wrap_test_rx(void);
+uint32_t write_wrap_test_rx(void);
+uint16_t current_buffer_length_rx(void);
 
 #endif /* __UART_BUFFER_RX_H__ */

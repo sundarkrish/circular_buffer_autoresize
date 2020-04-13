@@ -52,7 +52,8 @@ void buffer_destroy_tx(void);
 tx_error_status write_to_buffer_tx(unsigned char  val);
 unsigned char read_from_buffer_tx();
 tx_error_status write_to_buffer_tx(unsigned char );
-
-
+uint32_t write_wrap_test_tx(void);
+uint32_t write_wrap_test_tx(void);
+uint16_t current_buffer_length_tx(void);
 
 #endif /* __UART_BUFFER_TX_H__ */
